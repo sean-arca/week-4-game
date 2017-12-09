@@ -5,13 +5,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link r
         <title>Superhero Brawl!</title>
 
         <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <!-- Game CSS -->
-        <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,60 +20,97 @@
         <![endif]-->
     </head>
     <body>
-        
-        <!-- Characters / Player Chosen -->
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div id="players-div">
-                    <h1 class="section-title">Choose Your Superhero!</h1>
+        <div class="container-fluid">
+            <!-- Header -->
+            <div class="title-header">
+                  <h1 class="text-center"><strong>SUPERHERO BRAWL!</strong></h1>
+            </div>
 
+            <!-- Characters Row -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="characters-div">
+                    <h2 class="section-title">Choose Your Superhero!</h2>
+
+                    <!-- Captain America -->
+                    <span class="character-image available-character" id="captain-america-character">
+                        <p>Cpt. America</p>
+                        <p class="health">120</p>
+                        <img src="./assets/images/captain.jpg" alt="Captain America" id="captain-america" style="width: 100px">
+                    </span>
+
+                    <!-- The Flash -->
+                    <span class="character-image available-character" id="the-flash-character">
+                        <p>The Flash</p>
+                        <p class="health">100</p>
+                        <img src="./assets/images/flash.jpg" alt="The Flash" id="the-flash" style="width: 100px">
+                    </span>
+
+                    <!-- Wonderwoman -->
+                    <span class="character-image available-character" id="wonderwoman-character">
+                        <p>Wonderwoman</p>
+                        <p class="health">150</p>
+                        <img src="./assets/images/wonderwoman.jpg" alt="Wonderwoman" id="wonderwoman" style="width: 100px">
+                    </span>
+
+                    <!-- Loki -->
+                    <span class="character-image available-character" id="loki-character">
+                        <p>Loki</p>
+                        <p class="health">180</p>
+                        <img src="./assets/images/loki.jpg" alt="Loki" id="loki" style="width: 100px">
+                    </span>
                 </div>
             </div>
-        </div>
 
-        <!-- Enemies Available Row -->
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div id="enemies-div">
-                    <h1 class="section-title">Choose a Super Rival to Brawl</h1>
+            <!-- My Player Row -->
+            <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="myPlayer-div">
+                        <h2 class="section-title">My Superhero is</h2>
+    
+                        
+                    </div>
+                </div>
+            
+            <!-- Enemies Available Row -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="enemies-div">
+                    <h2 class="section-title">Choose a Rival to Brawl</h2>
 
+                    
                 </div>
             </div>
-        </div>
 
-        <!-- Defender Chosen Row -->
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div id="defender-div">
-                    <h1 class="section-title">You Are Fighting</h1>
+            <!-- Defender Chosen Row -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="defender-div">
+                    <h2 class="section-title">You Are Fighting</h2>
 
+                    
                 </div>
             </div>
-        </div>
 
-        <!-- Attack Button Row -->
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div id="attack-div">
-                    <h1 class="section-title">Press Attack</h1>
-
+            <!-- Attack Button Row -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="attack-div">
+                    <h2 class="section-title">Press Attack</h2>
+                    <button id="attack">Attack</button>
                 </div>
             </div>
-        </div>
 
-         <!-- Battle Log -->
-         <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div id="battle-div">
-                    <h1 class="section-title">Battle Log</h1>
+            <!-- Battle Log -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="battle-div">
+                    <h2 class="section-title">Battle Log</h2>
 
+                    
                 </div>
             </div>
         </div>
 
         <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1-6.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1-12.4/jquery.min.js"></script>
         <!-- Bootstrap JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Game JS -->
+        <script type="text/javascript" src="./assets/javascript/game.js"></script>
     </body>
 </html>
