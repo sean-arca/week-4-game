@@ -1,25 +1,82 @@
-// When the game starts (put function into reset wrapper)
+// When the game starts (put function into ready wrapper)
+$(document).ready(function() {
+
+    // -- Global variables --
+    // Has user selected a character?
+    var isPlayerChosen;
+    
+    // Has user selected a defender?
+    var isDefenderChosen;
+
+    // Variable for player object {}
+    var player = {};
+
+    // Variable for defender object {}
+    var defender = {};
+
+    // Variables for enemies defeated (i = 0)
+    var enemiesDefeated;
+
+    // Variable for game over?
+    var gameOver;
+
+
+    // -- Game Start --
+    function initializeGame() {
+        player = {};
+        defender = {};
+        enemiesDefeated = 0;
+        isPlayerChosen = false;
+        isDefenderChosen = false;
+        gameOver = false;
+
+        $("#myPlayer-div, #enemies-div, #defender-div, #battle-div").empty();
+      }
 
 // Player will choose a character by clicking on the fighter's picture. (on click event)
 // Player will fight as that character for the rest of the game.
+    // Each character in the game has 3 attributes:
+        // Health Points
+        // Attack Power
+        // Counter Attack Power
 // Player must then defeat all of the remaining fighters.
-
 // Player chooses an opponent by clicking on an enemy's picture. (on click event)
 // Enemies should be moved to a different area of the screen, the defender area.
+// The Health Points, Attack Power and Counter Attack Power of each character must differ.
 
+
+// -- Game ready when all is set --
 // Once both fighter and defender are set, the player will now be able to click the attack button.
 
+
+// -- Attacks --
 // Whenever the player clicks attack, their character damages the defender.
+    // Each time the player attacks, their character's Attack Power increases by its base Attack Power.
+        // For example, if the base Attack Power is 6, each attack will increase the Attack Power by 6 (12, 18, 24, 30 and so on).
     // The opponent will lose HP (health points).
         // These points are displayed at the bottom of the defender's picture.
 // The opponent character will instantly counter the attack.
+    //The enemy character only has Counter Attack Power.
+        //Unlike the player's Attack Points, Counter Attack Power never changes.
     // When that happens, the player's character will lose some of their HP.
         // These points are shown at the bottom of the player character's picture.
-
 // The player will keep hitting the attack button in an effort to defeat their opponent.
-
 // When the defender's HP is reduced to zero or below, remove the enemy from the defender area.
     // The player character can now choose a new opponent.
 
+
+// -- Win/Loss Conditions --
 // The player wins the game by defeating all enemy characters.
 // The player loses the game the game if their character's HP falls to zero or below.
+
+
+
+} // function ready() closer
+
+
+
+// -- Other Info --
+// No characters in the game can heal or recover Health Points.
+// A winning player must pick their characters wisely by first fighting an enemy with low Counter Attack Power. This will allow them to grind Attack Power and to take on enemies before they lose all of their Health Points. Healing options would mess with this dynamic.
+// Your players should be able to win and lose the game no matter what character they choose.
+    // The challenge should come from picking the right enemies, not choosing the strongest player
