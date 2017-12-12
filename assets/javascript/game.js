@@ -1,7 +1,4 @@
-// When the game starts (put function into ready wrapper)
-$(document).ready(function() {
-
-    // -- Global variables --
+// -- Global variables --
     // Has user selected a character?
     var isPlayerChosen;
     
@@ -20,21 +17,7 @@ $(document).ready(function() {
     // Variable for game over?
     var gameOver;
 
-    // -- Game Start --
-    function initializeGame() {
-        player = {};
-        defender = {};
-        enemiesDefeated = 0;
-        isPlayerChosen = false;
-        isDefenderChosen = false;
-        gameOver = false;
-
-        $("#myPlayer-div, #enemies-div, #defender-div, #battle-div").empty();
-    };
-} // function ready() closer
-
 // -- Create Character Objects {} --
-
 var cptAmerica = {
     name: "Cpt. America",
     health: 120,
@@ -64,6 +47,32 @@ var loki = {
 };
 
 // -- Game Functions --
+// Create function to reset game
+function resetGame() {
+    player = {};
+    defender = {};
+    enemiesDefeated = 0;
+    isPlayerChosen = false;
+    isDefenderChosen = false;
+    gameOver = false;
+
+    $("#myPlayer-div, #enemies-div, #defender-div, #battle-div").empty();
+
+    // Reset all the health values
+    $("#captain-america-character").children(".health").html(cptAmerica.health);
+    $("#the-flash-character").children(".health").html(theFlash.health);
+    $("#wonderwoman-character").children(".health").html(wonderWoman.health);
+    $("#loki-character").children(".health").html(loki.health);
+
+    // Remove all new classes of all the characters and reset back to available
+    $(".character-image").removeClass("chosen-character enemy-character defender-character").addClass("available-character");
+    var available = $(".available-character").show();
+    $("#characters-div").html(available);
+
+    $("#battle-messages").empty();
+    $("#restart").hide();
+};
+
 // Create functions to choose player and defender from character objects.
 function initializeCharacter(chosenCharacter) {
     player.name = chosenCharacter.name;
@@ -83,10 +92,19 @@ function initializeDefender(chosenDefender) {
 function moveToEnemies() {
     $(".available-character").removeClass("available-character").addClass("enemy-character");
     $("#enemies-div").append($(".enemy-character"));
-  }
+};
+
+// -- Game Start --
+// When the game starts (put function into ready wrapper)
+$(document).ready(function() {
+    
+        
+});
 
 
 
+
+// -------- Game Rules --------
 // Player will choose a character by clicking on the fighter's picture. (on click event)
 // Player will fight as that character for the rest of the game.
     // Each character in the game has 3 attributes:
