@@ -30,7 +30,7 @@ $(document).ready(function() {
         gameOver = false;
 
         $("#myPlayer-div, #enemies-div, #defender-div, #battle-div").empty();
-    }
+    };
 } // function ready() closer
 
 // Create Character Objects {}
@@ -39,7 +39,7 @@ var cptAmerica = {
     name: "Cpt. America",
     health: 120,
     baseAttack: 8,
-    attack: 8,
+    attack: 8
 };
   
 var theFlash = {
@@ -62,6 +62,23 @@ var loki = {
     baseAttack: 25,
     attack: 25
 };
+
+// Create functions to choose player and defender from character objects.
+
+function initializeCharacter(chosenCharacter) {
+    player.name = chosenCharacter.name;
+    player.health = chosenCharacter.health;
+    player.baseAttack = chosenCharacter.baseAttack;
+    player.attack = chosenCharacter.attack;
+}
+
+function initializeDefender(chosenDefender) {
+    defender.name = chosenDefender.name;
+    defender.health = chosenDefender.health;
+    defender.baseAttack = chosenDefender.baseAttack;
+    defender.attack = chosenDefender.attack;
+}
+
 
 // Player will choose a character by clicking on the fighter's picture. (on click event)
 // Player will fight as that character for the rest of the game.
