@@ -33,7 +33,35 @@ $(document).ready(function() {
     }
 } // function ready() closer
 
+// Create Character Objects {}
 
+var cptAmerica = {
+    name: "Cpt. America",
+    health: 120,
+    baseAttack: 8,
+    attack: 8,
+};
+  
+var theFlash = {
+    name: "The Flash",
+    health: 100,
+    baseAttack: 5,
+    attack: 5
+};
+  
+var wonderWoman = {
+    name: "Wonderwoman",
+    health: 150,
+    baseAttack: 20,
+    attack: 20
+};
+  
+var loki = {
+    name: "Loki",
+    health: 180,
+    baseAttack: 25,
+    attack: 25
+};
 
 // Player will choose a character by clicking on the fighter's picture. (on click event)
 // Player will fight as that character for the rest of the game.
