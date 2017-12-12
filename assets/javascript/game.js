@@ -20,7 +20,6 @@ $(document).ready(function() {
     // Variable for game over?
     var gameOver;
 
-
     // -- Game Start --
     function initializeGame() {
         player = {};
@@ -31,7 +30,10 @@ $(document).ready(function() {
         gameOver = false;
 
         $("#myPlayer-div, #enemies-div, #defender-div, #battle-div").empty();
-      }
+    }
+} // function ready() closer
+
+
 
 // Player will choose a character by clicking on the fighter's picture. (on click event)
 // Player will fight as that character for the rest of the game.
@@ -71,7 +73,7 @@ $(document).ready(function() {
 
 
 
-} // function ready() closer
+
 
 
 
