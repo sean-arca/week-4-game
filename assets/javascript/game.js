@@ -33,7 +33,7 @@ $(document).ready(function() {
     };
 } // function ready() closer
 
-// Create Character Objects {}
+// -- Create Character Objects {} --
 
 var cptAmerica = {
     name: "Cpt. America",
@@ -63,21 +63,28 @@ var loki = {
     attack: 25
 };
 
+// -- Game Functions --
 // Create functions to choose player and defender from character objects.
-
 function initializeCharacter(chosenCharacter) {
     player.name = chosenCharacter.name;
     player.health = chosenCharacter.health;
     player.baseAttack = chosenCharacter.baseAttack;
     player.attack = chosenCharacter.attack;
-}
+};
 
 function initializeDefender(chosenDefender) {
     defender.name = chosenDefender.name;
     defender.health = chosenDefender.health;
     defender.baseAttack = chosenDefender.baseAttack;
     defender.attack = chosenDefender.attack;
-}
+};
+
+// Create function to move enemies to enemies div
+function moveToEnemies() {
+    $(".available-character").removeClass("available-character").addClass("enemy-character");
+    $("#enemies-div").append($(".enemy-character"));
+  }
+
 
 
 // Player will choose a character by clicking on the fighter's picture. (on click event)
@@ -91,10 +98,8 @@ function initializeDefender(chosenDefender) {
 // Enemies should be moved to a different area of the screen, the defender area.
 // The Health Points, Attack Power and Counter Attack Power of each character must differ.
 
-
 // -- Game ready when all is set --
 // Once both fighter and defender are set, the player will now be able to click the attack button.
-
 
 // -- Attacks --
 // Whenever the player clicks attack, their character damages the defender.
@@ -111,16 +116,9 @@ function initializeDefender(chosenDefender) {
 // When the defender's HP is reduced to zero or below, remove the enemy from the defender area.
     // The player character can now choose a new opponent.
 
-
 // -- Win/Loss Conditions --
 // The player wins the game by defeating all enemy characters.
 // The player loses the game the game if their character's HP falls to zero or below.
-
-
-
-
-
-
 
 // -- Other Info --
 // No characters in the game can heal or recover Health Points.
