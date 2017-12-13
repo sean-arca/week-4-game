@@ -12,10 +12,10 @@
     var defender = {};
 
     // Variables for enemies defeated (i = 0)
-    var enemiesDefeated;
+    var enemiesDefeated = 0;
 
     // Variable for game over?
-    var gameOver;
+    var gameOver = false;
 
 // -- Create Character Objects {} --
 var cptAmerica = {
@@ -56,7 +56,7 @@ function resetGame() {
     isDefenderChosen = false;
     gameOver = false;
 
-    $("#myPlayer-div, #enemies-div, #defender-div, #battle-div").empty();
+    // $("#myPlayer-div, #enemies-div, #defender-div, #battle-div").empty();
 
     // Reset all the health values
     $("#captain-america-character").children(".health").html(cptAmerica.health);
@@ -65,11 +65,18 @@ function resetGame() {
     $("#loki-character").children(".health").html(loki.health);
 
     // Remove all new classes of all the characters and reset back to available
-    $(".character-image").removeClass("enemy-character defender-character").addClass("available-character");
+    $(".character-image").removeClass("chosen-character enemy-character defender-character").addClass("available-character");
     var available = $(".available-character").show();
     $("#characters-div").html(available);
 
-    $("#battle-messages").empty();
+    // Reset message on a timeout function
+    $("#battle-messages").append("Resetting Game...");
+    var logReset = function () {
+        $("#battle-messages").empty();
+    };
+    setTimeout(logReset, 3000);
+    
+    $("#attack").show();
     $("#restart").hide();
 };
 
@@ -130,6 +137,10 @@ $(document).ready(function() {
                 // Announce "You are now fighting Cpt. America." in battle-messages
                 $("#battle-messages").append("<div>You are now fighting Cpt. America.</div>");
             }
+            // Check to see if div has "chosen-character" class and show message
+            if($("#captain-america-character").hasClass("chosen-character")) {
+                $("#battle-messages").append("<div>Are you mad!? You can't fight yourself. Choose a rival.</div>");
+            }
         }
     });
     
@@ -163,6 +174,10 @@ $(document).ready(function() {
                 $("#defender-div").append(this);
                 // Announce "You are now fighting The Flash" in battle-messages
                 $("#battle-messages").append("<div>You are now fighting The Flash.</div>");
+            }
+            // Check to see if div has "chosen-character" class and show message
+            if($("#the-flash-character").hasClass("chosen-character")) {
+                $("#battle-messages").append("<div>Are you mad!? You can't fight yourself. Choose a rival.</div>");
             }
         }
     });
@@ -198,6 +213,10 @@ $(document).ready(function() {
                 // Announce "You are now fighting Wonderwoman." in battle-messages
                 $("#battle-messages").append("<div>You are now fighting Wonderwoman.</div>");
             }
+            // Check to see if div has "chosen-character" class and show message
+            if($("#wonderwoman-character").hasClass("chosen-character")) {
+                $("#battle-messages").append("<div>Are you mad!? You can't fight yourself. Choose a rival.</div>");
+            }
         }
     });
 
@@ -232,9 +251,77 @@ $(document).ready(function() {
                 // Announce "You are now fighting Loki." in battle-messages
                 $("#battle-messages").append("<div>You are now fighting Loki.</div>");
             }
+            // Check to see if div has "chosen-character" class and show message
+            if($("#loki-character").hasClass("chosen-character")) {
+                $("#battle-messages").append("<div>Are you mad!? You can't fight yourself. Choose a rival.</div>");
+            }
         }
     });
 
+    // Attack Button (On Click)
+    $("#attack").on("click", function() {
+        // Log "Attacking"
+        console.log("Attacking");
+    
+        // On click only works if isPlayerChosen/isDefenderChosen are true and gameOver is false.
+        if (isPlayerChosen && isDefenderChosen && (gameOver === false)) {
+          // isPlayerChosen(player) attacks isDefenderChosen(defender) && decrease isDefenderChosen(defender) health
+          defender.health = defender.health - player.attack;
+          // Update new health of defender when attacked
+          $(".defender-character").children(".health").html(defender.health);
+          // Show in log when player attacks defender
+          $("#battle-messages").html("<p>You attacked " + defender.name + " for " + player.attack + " damage.<p>");
+          console.log(`You attacked ${defender.name} for ${player.attack} damage. `);
+          // User's attack power increases
+          player.attack = player.attack + player.baseAttack;
+    
+          // If the defender's health is > 0 => defender attacks player
+          if (defender.health > 0) {
+            // defender attacks player && decrease player health
+            player.health = player.health - defender.baseAttack;
+            // Update new health of player when attacked
+            $(".chosen-character").children(".health").html(player.health);
+    
+            // If player health > 0 => show damage to player
+            if (player.health > 0) {
+              $("#battle-messages").append("<p>" + defender.name + " attacked you back for " + defender.baseAttack + " damage.</p>");
+              console.log(`${defender.name} attacked you back for ${defender.baseAttack} damage. `);
+            } 
+            
+            // Else if player health < 0 => gameOver && show restart button
+            else {
+              gameOver = true;
+              $("#battle-messages").html("<p>You have been defeated... sadface</p><p>Click below to play again!</p>");
+              $("#restart").show();
+            }
+          } 
+          
+          // If defender health < 0 => enemiesDefeated++ and make player choose another rival
+          else {
+            enemiesDefeated++;
+            isDefenderChosen = false;
+            $("#battle-messages").html("<p>You have defeated " + defender.name + "." + " You have " + player.health + " health left. Choose another rival to battle!</p>");
+            $(".defender-character").hide();
+    
+            // If enemiesDefeated === 3 => gameOver (win!)
+            if (enemiesDefeated === 3) {
+              gameOver = true;
+              $("#battle-messages").html("<p>You have won the game!!!</p><p>Play again?</p>");
+              $("#restart").show();
+              $("#attack").hide();
+            }
+          };
+        } 
+        
+        // Else if isPlayerChosen and gameOver are false, tell player to select superhero first
+        else if ((isPlayerChosen === false) && (gameOver === false)) {
+          $("#battle-messages").html("<p>You need to select a Superhero!</p>");
+        } 
+        // Else if isDefenderChosen and gameOver are false, tell player to select defender first
+        else if ((isDefenderChosen === false) && (gameOver === false)) {
+          $("#battle-messages").html("<p>You must choose a rival to battle!</p>");
+        }
+      });
 
     // Empty battle messages
     $("#battle-messages").empty();
@@ -248,6 +335,8 @@ $(document).ready(function() {
     
         resetGame();
     });
+
+    
 });
 
 
