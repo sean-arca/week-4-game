@@ -74,3 +74,7 @@ button:hover {
 #restart:hover {
     background-color:rgb(22, 134, 41);
 }
+
+#battle-messages {
+    color:white;
+}

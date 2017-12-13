@@ -101,7 +101,7 @@ $(document).ready(function() {
     // -- Event Handlers (On Clicks) --
     // Selecting Cpt. America (On Click)
     $("#captain-america-character").on("click", function () {
-        console.log("Cpt. America has been selected"); // Testing
+        console.log("Cpt. America has been selected."); // Testing
 
         // On click, if isPlayerChosen === false(start of game), set cptAmerica as character and display
         if(isPlayerChosen === false) {
@@ -113,8 +113,7 @@ $(document).ready(function() {
             $("#myPlayer-div").append(this);
             // Move the remaining characters to the enemies section
             moveToEnemies();
-            // Empty battle messages
-            $("#battle-messages").empty();
+            // Announce "Cpt. America has been selected." in battle-messages
             $("#battle-messages").append("Cpt. America has been selected.");
         }
         
@@ -128,16 +127,117 @@ $(document).ready(function() {
                 // Display cptAmerica to the defender section
                 $("#captain-america-character").removeClass("enemy-character").addClass("defender-character");
                 $("#defender-div").append(this);
-                // Empty battle messages
-                $("#battle-messages").empty();
+                // Announce "You are now fighting Cpt. America." in battle-messages
+                $("#battle-messages").append("<div>You are now fighting Cpt. America.</div>");
             }
         }
-    }); 
+    });
+    
+    // Selecting The Flash (On Click)
+    $("#the-flash-character").on("click", function () {
+        console.log("The Flash has been selected."); // Testing
+
+        // On click, if isPlayerChosen === false(start of game), set theFlash as character and display
+        if(isPlayerChosen === false) {
+            // Set the user/player character
+            initializeCharacter(theFlash);
+            isPlayerChosen = true;
+            // Display the chosen character
+            $("#the-flash-character").removeClass("available-character").addClass("chosen-character");
+            $("#myPlayer-div").append(this);
+            // Move the remaining characters to the enemies section
+            moveToEnemies();
+            // Announce "The Flash has been selected." in battle-messages
+            $("#battle-messages").append("The Flash has been selected.");
+        }
+        
+        // else if isPlayerChosen === true and isDefenderChosen === false, make The Flash an enemy and display
+        else if ((isPlayerChosen === true) && (isDefenderChosen == false)) {
+            // Check to see first if the div has the class "enemy-character"
+            if($("#the-flash-character").hasClass("enemy-character")) {
+                // Set the user's enemy
+                initializeDefender(theFlash);
+                isDefenderChosen = true;
+                // Display theFlash to the defender section
+                $("#the-flash-character").removeClass("enemy-character").addClass("defender-character");
+                $("#defender-div").append(this);
+                // Announce "You are now fighting The Flash" in battle-messages
+                $("#battle-messages").append("<div>You are now fighting The Flash.</div>");
+            }
+        }
+    });
+
+    // Selecting Wonderwoman (On Click)
+    $("#wonderwoman-character").on("click", function () {
+        console.log("Wonderwoman has been selected."); // Testing
+
+        // On click, if isPlayerChosen === false(start of game), set wonderWoman as character and display
+        if(isPlayerChosen === false) {
+            // Set the user/player character
+            initializeCharacter(wonderWoman);
+            isPlayerChosen = true;
+            // Display the chosen character
+            $("#wonderwoman-character").removeClass("available-character").addClass("chosen-character");
+            $("#myPlayer-div").append(this);
+            // Move the remaining characters to the enemies section
+            moveToEnemies();
+            // Announce "Wonderwoman has been selected." in battle-messages
+            $("#battle-messages").append("Wonderwoman has been selected.");
+        }
+        
+        // else if isPlayerChosen === true and isDefenderChosen === false, make Wonderwoman an enemy and display
+        else if ((isPlayerChosen === true) && (isDefenderChosen == false)) {
+            // Check to see first if the div has the class "enemy-character"
+            if($("#wonderwoman-character").hasClass("enemy-character")) {
+                // Set the user's enemy
+                initializeDefender(wonderWoman);
+                isDefenderChosen = true;
+                // Display wonderWoman to the defender section
+                $("#wonderwoman-character").removeClass("enemy-character").addClass("defender-character");
+                $("#defender-div").append(this);
+                // Announce "You are now fighting Wonderwoman." in battle-messages
+                $("#battle-messages").append("<div>You are now fighting Wonderwoman.</div>");
+            }
+        }
+    });
+
+    // Selecting Loki (On Click)
+    $("#loki-character").on("click", function () {
+        console.log("Loki has been selected."); // Testing
+
+        // On click, if isPlayerChosen === false(start of game), set loki as character and display
+        if(isPlayerChosen === false) {
+            // Set the user/player character
+            initializeCharacter(loki);
+            isPlayerChosen = true;
+            // Display the chosen character
+            $("#loki-character").removeClass("available-character").addClass("chosen-character");
+            $("#myPlayer-div").append(this);
+            // Move the remaining characters to the enemies section
+            moveToEnemies();
+            // Announce "Loki has been selected." in battle-messages
+            $("#battle-messages").append("Loki has been selected.");
+        }
+        
+        // else if isPlayerChosen === true and isDefenderChosen === false, make loki an enemy and display
+        else if ((isPlayerChosen === true) && (isDefenderChosen == false)) {
+            // Check to see first if the div has the class "enemy-character"
+            if($("#loki-character").hasClass("enemy-character")) {
+                // Set the user's enemy
+                initializeDefender(loki);
+                isDefenderChosen = true;
+                // Display loki to the defender section
+                $("#loki-character").removeClass("enemy-character").addClass("defender-character");
+                $("#defender-div").append(this);
+                // Announce "You are now fighting Loki." in battle-messages
+                $("#battle-messages").append("<div>You are now fighting Loki.</div>");
+            }
+        }
+    });
 
 
-
-
-
+    // Empty battle messages
+    $("#battle-messages").empty();
 
     // Hide Restart button at the beginning
     $("#restart").hide();
