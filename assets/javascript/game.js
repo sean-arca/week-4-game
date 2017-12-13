@@ -65,7 +65,7 @@ function resetGame() {
     $("#loki-character").children(".health").html(loki.health);
 
     // Remove all new classes of all the characters and reset back to available
-    $(".character-image").removeClass("chosen-character enemy-character defender-character").addClass("available-character");
+    $(".character-image").removeClass("enemy-character defender-character").addClass("available-character");
     var available = $(".available-character").show();
     $("#characters-div").html(available);
 
@@ -241,7 +241,13 @@ $(document).ready(function() {
 
     // Hide Restart button at the beginning
     $("#restart").hide();
-        
+
+    // Restart (On Click)
+    $("#restart").on("click", function() {
+        console.log("Restarting Game...");
+    
+        resetGame();
+    });
 });
 
 
