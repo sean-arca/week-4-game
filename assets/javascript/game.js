@@ -95,9 +95,52 @@ function moveToEnemies() {
 };
 
 // -- Game Start --
-// When the game starts (put function into ready wrapper)
+// Run this when the HTML is loaded
 $(document).ready(function() {
     
+    // -- Event Handlers (On Clicks) --
+    // Selecting Cpt. America (On Click)
+    $("#captain-america-character").on("click", function () {
+        console.log("Cpt. America has been selected"); // Testing
+
+        // On click, if isPlayerChosen === false(start of game), set cptAmerica as character and display
+        if(isPlayerChosen === false) {
+            // Set the user/player character
+            initializeCharacter(cptAmerica);
+            isPlayerChosen = true;
+            // Display the chosen character
+            $("#captain-america-character").removeClass("available-character").addClass("chosen-character");
+            $("#myPlayer-div").append(this);
+            // Move the remaining characters to the enemies section
+            moveToEnemies();
+            // Empty battle messages
+            $("#battle-messages").empty();
+            $("#battle-messages").append("Cpt. America has been selected.");
+        }
+        
+        // else if isPlayerChosen === true and isDefenderChosen === false, make Cpt. America an enemy and display
+        else if ((isPlayerChosen === true) && (isDefenderChosen == false)) {
+            // Check to see first if the div has the class "enemy-character"
+            if($("#captain-america-character").hasClass("enemy-character")) {
+                // Set the user's enemy
+                initializeDefender(cptAmerica);
+                isDefenderChosen = true;
+                // Display cptAmerica to the defender section
+                $("#captain-america-character").removeClass("enemy-character").addClass("defender-character");
+                $("#defender-div").append(this);
+                // Empty battle messages
+                $("#battle-messages").empty();
+            }
+        }
+    }); 
+
+
+
+
+
+
+    // Hide Restart button at the beginning
+    $("#restart").hide();
         
 });
 
