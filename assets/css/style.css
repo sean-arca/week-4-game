@@ -66,3 +66,11 @@ button:focus {
 button:hover {
     background-color:rgb(223, 54, 39);
 }
+
+#restart {
+    background-color:rgb(25, 180, 38);
+}
+
+#restart:hover {
+    background-color:rgb(22, 134, 41);
+}
