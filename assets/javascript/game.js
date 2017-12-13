@@ -1,9 +1,9 @@
 // -- Global variables --
     // Has user selected a character?
-    var isPlayerChosen;
+    var isPlayerChosen = false;
     
     // Has user selected a defender?
-    var isDefenderChosen;
+    var isDefenderChosen = false;
 
     // Variable for player object {}
     var player = {};
